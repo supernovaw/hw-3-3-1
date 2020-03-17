@@ -1,11 +1,15 @@
 package com.example.homework331;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,6 +38,24 @@ public class MainActivity extends AppCompatActivity {
 			for (Button b : scientificButtons)
 				b.setOnClickListener(padListener);
 		}
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		BackgroundSelectionActivity.setBackground(this);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		startActivity(new Intent(this, BackgroundSelectionActivity.class));
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void initViews() {
